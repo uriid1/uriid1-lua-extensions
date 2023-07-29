@@ -1,43 +1,45 @@
---[[
-  ####--------------------------------####
-  #--# Author:   by uriid1            #--#
-  #--# License:  GNU GPLv3            #--#
-  #--# Telegram: @main_moderator      #--#
-  #--# E-mail:   appdurov@gmail.com   #--#
-  ####--------------------------------####
---]]
+---
+-- Module for working with date and time.
+-- @module date
 
---Setting the time
---@param data? Date table
---@param h? Hours
---@param m? Minutes
---@return integer
-local function setHours(date, h, m, s)
+local M = {}
+
+---
+-- Setting the time
+-- @param date Date table
+-- @param h Hours
+-- @param m Minutes
+-- @param s Seconds
+-- @return integer
+M.setHours = function (date, h, m, s)
   date.hour = h
   date.min = m
   date.sec = s
   return os.time(date)
 end
 
---Get the current timezone
---@return integer
-local function getTimezone()
+---
+-- Get the current timezone
+-- @return integer
+M.getTimezone = function()
   local now = os.time()
   return os.difftime(now, os.time(os.date('!*t', now)))
 end
 
---Conversion to ISO8601
---@param unixtime? Unix time
---@return string
-local function toIso8601(unixtime)
+---
+-- Conversion to ISO8601
+-- @param unixtime Unix time
+-- @return string
+M.toIso8601 = function(unixtime)
   unixtime = unixtime or os.time()
   return os.date('!%Y-%m-%dT%TZ', unixtime)
 end
 
---Conversion ISO8601 to unixtime
---@param date? String
---@return 
-local function toUnix(date)
+---
+-- Conversion ISO8601 to unixtime
+-- @param date String
+-- @return integer or nil
+M.toUnix = function(date)
   if type(date) ~= 'string' then
     return nil
   end
@@ -56,9 +58,4 @@ local function toUnix(date)
   return os.time({year=yy, month=mm, day=dd, hour=hh, min=min, sec=sec})
 end
 
-return {
-  setHours = setHours;
-  getTimezone = getTimezone;
-  toIso8601 = toIso8601;
-  toUnix = toUnix;
-}
+return M

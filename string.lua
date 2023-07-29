@@ -1,17 +1,15 @@
---[[
-  ####--------------------------------####
-  #--# Author:   by uriid1            #--#
-  #--# License:  GNU GPLv3            #--#
-  #--# Telegram: @main_moderator      #--#
-  #--# E-mail:   appdurov@gmail.com   #--#
-  ####--------------------------------####
---]]
+---
+-- Module for working with string.
+-- @module string
 
---Removes duplicate characters in a string
---@param text? String
---@param optional? Table with references to sub and gmatch functions
---@return string
-local function delrep(text, optional)
+local M = {}
+
+---
+-- Removes duplicate characters in a string
+-- @param text String
+-- @param optional Table with references to sub and gmatch functions
+-- @return string
+M.delrep = function(text, optional)
   local sub = optional and optional.sub or string.sub
   local gmatch = optional and optional.gmatch or string.gmatch
 
@@ -28,12 +26,13 @@ local function delrep(text, optional)
   return result
 end
 
---String split
---@param text? String
---@param sep? Separator
---@param max? Separator boundary
---@return string
-local function split(text, sep, max)
+---
+-- String split
+-- @param text String
+-- @param sep Separator
+-- @param max Separator boundary
+-- @return string
+M.split = function(text, sep, max)
   local result = {}
   local i = 1
 
@@ -41,7 +40,7 @@ local function split(text, sep, max)
     result[i] = part
 
     if i == max then
-        break
+      break
     end
 
     i = i + 1
@@ -50,26 +49,29 @@ local function split(text, sep, max)
   return result
 end
 
---String trim
---@param text? String
---@return string
-local function trim(text)
+---
+-- String trim
+-- @param text String
+-- @return string
+M.trim = function(text)
   return text:match("^%s*(.-)%s*$")
 end
 
---Escaping special characters
---@param text? String
---@return string
+---
+-- Escaping special characters
+-- @param text String
+-- @return string
 local function escape(text)
   local result, _ = text:gsub('[%(%)%.%%%+%-%*%?%[%]%^%$]', '%%%0')
   return result
 end
 
---Adding a separator to a number
---@param num? Number
---@param sep? Separator
---@return string
-local function num2sep(num, sep)
+---
+-- Adding a separator to a number
+-- @param num Number
+-- @param sep Separator
+-- @return string
+M.num2sep = function(num, sep)
   num = tostring(num)
   sep = sep or '.'
 
@@ -96,10 +98,4 @@ local function num2sep(num, sep)
   return (minus >= 1 and '-' or '')..result
 end
 
-return {
-  delrep = delrep;
-  split = split;
-  trim = trim;
-  escape = escape;
-  num2sep = num2sep;
-}
+return M

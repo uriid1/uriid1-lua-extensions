@@ -1,23 +1,15 @@
---[[
-  ####--------------------------------####
-  #--# Author:   by uriid1            #--#
-  #--# License:  GNU GPLv3            #--#
-  #--# Telegram: @main_moderator      #--#
-  #--# E-mail:   appdurov@gmail.com   #--#
-  ####--------------------------------####
---]]
+---
+-- Module for working with math.
+-- @module math
 
-local _D2R = math.pi / -180
-local _R2D = -180 / math.pi
+local M = {}
 
--- Комбинаторика
---
-
---Факториал / Перестановка (1 * ... * n)
---Для подсчета кол-во вариантов перестановки например
---@param n? Number
---@return number 
-local function factorial(n)
+---
+-- Factorial / Permutation (1 * ... * n)
+-- To calculate the number of permutation options, for example.
+-- @param n Number
+-- @return number 
+M.factorial = function(n)
   local res = 1
   for i = 1, n do
     res = i * res
@@ -26,90 +18,90 @@ local function factorial(n)
   return res
 end
 
---Размешение
---Выборка из n по k элементов с учётом порядка
---Или формула для подсчёта кол-во размещений без повторений
---@param n? Number
---@param k? Number
---@return number 
-local function placement(n, k)
-  return factorial(n) / factorial(n - k)
+---
+-- Arrangement
+-- Selection of k elements from n with regard to order
+-- Or the formula for calculating the number of arrangements without repetitions
+-- @param n Number
+-- @param k Number
+-- @return number 
+M.placement = function(n, k)
+  return M.factorial(n) / M.factorial(n - k)
 end
 
---Сочетание
---Выборка без учета порядка
---@param n? Number
---@param k? Number
---@return number 
-local function combination(n, k)
-  return factorial(n) / (factorial(n - k) * factorial(k))
+---
+-- Combination
+-- Selection without regard to order
+-- @param n Number
+-- @param k Number
+-- @return number 
+M.combination = function(n, k)
+  return M.factorial(n) / (M.factorial(n - k) * M.factorial(k))
 end
 
--- Math
---
-
-local function sign(x)
+---
+-- sign
+-- @param x int
+-- @return integer
+M.sign = function(x)
   return (x > 0) and 1 or (x == 0 and 0 or -1)
 end
 
-local function round(x)
+---
+-- round
+-- @param x int
+-- @return integer
+M.round = function(x)
   return (x >= 0) and math.floor(x + 0.5) or math.ceil(x - 0.5)
 end
 
-local function clamp(val, val_min, val_max)
+---
+-- clamp
+-- @param val Source value
+-- @param val_min Minimal value
+-- @param val_max Maximal value
+-- @return integer
+M.clamp = function(val, val_min, val_max)
   return math.max(val_min, math.min(val_max, val))
 end
 
-local function lerp(v0, v1, t)
+---
+-- lerp
+-- @param v0 Source value
+-- @param v1 To value
+-- @param t Time
+-- @return float
+M.lerp = function(v0, v1, t)
   return v0 * (1.0 - t) + t * v1
 end
 
--- Trig
---
-
-local function lengthdirX(length, direction)
-  return length * math.cos(direction * _D2R)
+---
+-- lengthdirX
+-- @param length Length
+-- @param direction Direction
+-- @return float
+M.lengthdirX = function(length, direction)
+  return length * math.cos(direction)
 end
 
-local function lengthdirY(length, direction)
-  return length * math.sin(direction * _D2R)
+---
+-- lengthdirY
+-- @param length Length
+-- @param direction Direction
+-- @return float
+M.lengthdirY = function(length, direction)
+  return length * math.sin(direction)
 end
 
-local function pointDirection(x1, y1, x2, y2)
-  return (_R2D * (math.atan2(y1 - y2, x1 - x2))) + 180
+---
+-- distance2point
+-- @param x1 x1
+-- @param y1 y1
+-- @param x2 x2
+-- @param y2 y2
+-- @return float
+M.distance2point = function(x1, y1, x2, y2) 
+  return math.sqrt((x1 - x2)^2 + (y1 - y2)^2)
 end
 
-local function angleDifference(ang1, ang2)
-  return ((((ang1 - ang2) % 360) + 540) % 360) - 180
-end
-
-local function distance2point(x1, y1, x2, y2) 
-  return math.sqrt( (x1 - x2)^2 + (y1 - y2)^2 )
-end
-
-local function deg2rad(degree)
-  return degree * _D2R
-end
-
-local function rad2deg(degree)
-  return degree * _R2D
-end
-
-return {
-  factorial = factorial;
-  placement = placement;
-  combination = combination;
-
-  sign = sign;
-  round = round;
-  clamp = clamp;
-  lerp = lerp;
-
-  lengthdirX = lengthdirX;
-  lengthdirY = lengthdirY;
-  pointDirection = pointDirection;
-  angleDifference = angleDifference;
-  distance2point = distance2point;
-  deg2rad = deg2rad;
-  rad2deg = rad2deg;
-}
+return M

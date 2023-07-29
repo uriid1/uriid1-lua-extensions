@@ -1,20 +1,15 @@
---[[
-  ####--------------------------------####
-  #--# Author:   by uriid1            #--#
-  #--# License:  GNU GPLv3            #--#
-  #--# Telegram: @main_moderator      #--#
-  #--# E-mail:   appdurov@gmail.com   #--#
-  ####--------------------------------####
---]]
+---
+-- Module for init all modules.
+-- @module init
 
-local uriid1_string = require 'string'
-local uriid1_table = require 'table'
-local uriid1_math = require 'math'
-local uriid1_date = require 'date'
+local extension_string = require 'string'
+local extension_table = require 'table'
+local extension_math = require 'math'
+local extension_date = require 'date'
 
 return {
-  string = uriid1_string;
-  table = uriid1_table;
-  date = uriid1_date;
-  math = uriid1_math;
+  string = extension_string;
+  table = extension_table;
+  date = extension_math;
+  math = extension_date;
 }
