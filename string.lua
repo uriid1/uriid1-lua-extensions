@@ -9,7 +9,7 @@ local M = {}
 -- @param text String
 -- @param optional Table with references to sub and gmatch functions
 -- @return string
-M.delrep = function(text, optional)
+function M.delrep(text, optional)
   local sub = optional and optional.sub or string.sub
   local gmatch = optional and optional.gmatch or string.gmatch
 
@@ -32,7 +32,7 @@ end
 -- @param sep Separator
 -- @param max Separator boundary
 -- @return string
-M.split = function(text, sep, max)
+function M.split(text, sep, max)
   local result = {}
   local i = 1
 
@@ -53,7 +53,7 @@ end
 -- String trim
 -- @param text String
 -- @return string
-M.trim = function(text)
+function M.trim(text)
   return text:match("^%s*(.-)%s*$")
 end
 
@@ -61,7 +61,7 @@ end
 -- Escaping special characters
 -- @param text String
 -- @return string
-local function escape(text)
+function M.escape(text)
   local result, _ = text:gsub('[%(%)%.%%%+%-%*%?%[%]%^%$]', '%%%0')
   return result
 end
@@ -71,7 +71,7 @@ end
 -- @param num Number
 -- @param sep Separator
 -- @return string
-M.num2sep = function(num, sep)
+function M.num2sep(num, sep)
   num = tostring(num)
   sep = sep or '.'
 

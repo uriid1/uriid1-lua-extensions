@@ -11,7 +11,7 @@ local M = {}
 -- @param m Minutes
 -- @param s Seconds
 -- @return integer
-M.setHours = function (date, h, m, s)
+function M.setHours(date, h, m, s)
   date.hour = h
   date.min = m
   date.sec = s
@@ -21,7 +21,7 @@ end
 ---
 -- Get the current timezone
 -- @return integer
-M.getTimezone = function()
+function M.getTimezone()
   local now = os.time()
   return os.difftime(now, os.time(os.date('!*t', now)))
 end
@@ -30,7 +30,7 @@ end
 -- Conversion to ISO8601
 -- @param unixtime Unix time
 -- @return string
-M.toIso8601 = function(unixtime)
+function M.toIso8601(unixtime)
   unixtime = unixtime or os.time()
   return os.date('!%Y-%m-%dT%TZ', unixtime)
 end
@@ -39,7 +39,7 @@ end
 -- Conversion ISO8601 to unixtime
 -- @param date String
 -- @return integer or nil
-M.toUnix = function(date)
+function M.toUnix(date)
   if type(date) ~= 'string' then
     return nil
   end

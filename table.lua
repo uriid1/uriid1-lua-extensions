@@ -15,7 +15,7 @@ local table_random = math.random
 -- Checking if a table is empty
 -- @param t Table
 -- @return boolean 
-M.isEmpty = function(t)
+function M.isEmpty(t)
   return not next(t)
 end
 
@@ -23,7 +23,7 @@ end
 -- Checking if it is a table
 -- @param t Table
 -- @return boolean
-M.isTable = function(t)
+function M.isTable(t)
   return type(t) == 'table'
 end
 
@@ -31,7 +31,7 @@ end
 -- Checking if a table is an array
 -- @param t Table
 -- @return boolean
-M.isArray = function(t)
+function M.isArray(t)
   if type(t) ~= 'table' then
     return false
   end
@@ -52,7 +52,7 @@ end
 -- Inserting an item at the end of an array
 -- @param t Table
 -- @param item? Item 
-M.push = function(t, item)
+function M.push(t, item)
   table_insert(t, #t+1, item)
 end
 
@@ -60,7 +60,7 @@ end
 -- Returns the first element of the table, then deletes it by making an offset
 -- @param t Table
 -- @return first element or empty table
-M.shift = function(t)
+function M.shift(t)
   local tmp = {}
   table_insert(tmp, t[1])
   table_remove(t, 1)
@@ -138,7 +138,7 @@ end
 -- @param value Value
 -- @param start Start of fill
 -- @param done End of fill
-M.fill = function(t, value, start, done)
+function M.fill(t, value, start, done)
   for i = start, done do
     t[i] = value
   end
@@ -151,14 +151,14 @@ end
 -- @param start Start
 -- @param done End
 -- @return table
-M.toString = function(t, sep, start, done)
+function M.toString(t, sep, start, done)
   return table_concat(t, sep or ',', start or 1, done or #t)
 end
 
 ---
 -- Shuffles the table
 -- @param t Table
-M.shake = function(t)
+function M.shake(t)
   for i = #t, 1, -1 do
     local rnd_index = table_random(i)
     t[rnd_index], t[i] = t[i], t[rnd_index]
