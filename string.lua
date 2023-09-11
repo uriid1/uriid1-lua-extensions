@@ -5,6 +5,15 @@
 local M = {}
 
 ---
+-- Escaping special characters
+-- @param text String
+-- @return string
+function M.escape(text)
+  local result, _ = text:gsub('[%(%)%.%%%+%-%*%?%[%]%^%$]', '%%%0')
+  return result
+end
+
+---
 -- Removes duplicate characters in a string
 -- @param text String
 -- @param optional Table with references to sub and gmatch functions
@@ -33,10 +42,11 @@ end
 -- @param max Separator boundary
 -- @return string
 function M.split(text, sep, max)
+  sep = sep or ' '
+
   local result = {}
   local i = 1
-
-  for part in text:gmatch("[^"..sep.."]+") do
+  for part in text:gmatch("[^"..M.escape(sep).."]+") do
     result[i] = part
 
     if i == max then
@@ -58,16 +68,23 @@ function M.trim(text)
 end
 
 ---
--- Escaping special characters
+-- String left trim
 -- @param text String
 -- @return string
-function M.escape(text)
-  local result, _ = text:gsub('[%(%)%.%%%+%-%*%?%[%]%^%$]', '%%%0')
-  return result
+function M.ltrim(text)
+  return text:match("^%s*(.+)")
 end
 
 ---
--- Adding a separator to a number
+-- String right trim
+-- @param text String
+-- @return string
+function M.rtrim(text)
+  return text:match("(.-)%s*$")
+end
+
+---
+-- Adding a separator to a number 1000000 -> 1.000.000
 -- @param num Number
 -- @param sep Separator
 -- @return string

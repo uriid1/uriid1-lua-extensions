@@ -123,7 +123,7 @@ end
 -- Reverse the table
 -- @param t Table
 -- @return table
-M.reverse = function(t)
+function M.reverse(t)
   local tbl = {}
   for i = #t, 1, -1 do
     table_insert(tbl, #tbl+1, t[i])
