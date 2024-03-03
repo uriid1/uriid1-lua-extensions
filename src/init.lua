@@ -2,14 +2,14 @@
 -- Module for init all modules.
 -- @module init
 
-local extension_string = require 'uriid1-lua-extensions.string'
-local extension_table = require 'uriid1-lua-extensions.table'
-local extension_math = require 'uriid1-lua-extensions.math'
-local extension_date = require 'uriid1-lua-extensions.date'
+local ustring = require 'ule.extensions.ustring'
+local utable = require 'ule.extensions.utable'
+local umath = require 'ule.extensions.umath'
+local udate = require 'ule.extensions.udate'
 
 return {
-  ['string'] = extension_string,
-  ['table'] = extension_table,
-  ['date'] = extension_date,
-  ['math'] = extension_math,
+  ustring = ustring,
+  utable = utable,
+  udate = umath,
+  umath = udate,
 }

@@ -5,7 +5,7 @@
 local M = {}
 
 local type = type
-local next = next 
+local next = next
 local table_insert = table.insert
 local table_remove = table.remove
 local table_concat = table.concat
