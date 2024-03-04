@@ -6,15 +6,11 @@ local M = {}
 
 local type = type
 local next = next
-local table_insert = table.insert
-local table_remove = table.remove
-local table_concat = table.concat
-local table_random = math.random
 
 ---
 -- Checking if a table is empty
 -- @param t Table
--- @return boolean 
+-- @return boolean
 function M.isEmpty(t)
   return not next(t)
 end
@@ -49,21 +45,13 @@ function M.isArray(t)
 end
 
 ---
--- Inserting an item at the end of an array
--- @param t Table
--- @param item? Item 
-function M.push(t, item)
-  table_insert(t, #t+1, item)
-end
-
----
 -- Returns the first element of the table, then deletes it by making an offset
 -- @param t Table
 -- @return first element or empty table
 function M.shift(t)
   local tmp = {}
-  table_insert(tmp, t[1])
-  table_remove(t, 1)
+  table.insert(tmp, t[1])
+  table.remove(t, 1)
   return tmp[1] or {}
 end
 
@@ -126,7 +114,7 @@ end
 function M.reverse(t)
   local tbl = {}
   for i = #t, 1, -1 do
-    table_insert(tbl, #tbl+1, t[i])
+    table.insert(tbl, #tbl+1, t[i])
   end
 
   return tbl
@@ -152,7 +140,7 @@ end
 -- @param done End
 -- @return table
 function M.toString(t, sep, start, done)
-  return table_concat(t, sep or ',', start or 1, done or #t)
+  return table.concat(t, sep or ',', start or 1, done or #t)
 end
 
 ---
@@ -160,7 +148,7 @@ end
 -- @param t Table
 function M.shake(t)
   for i = #t, 1, -1 do
-    local rnd_index = table_random(i)
+    local rnd_index = math.random(i)
     t[rnd_index], t[i] = t[i], t[rnd_index]
   end
 end
