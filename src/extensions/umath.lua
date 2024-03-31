@@ -5,10 +5,10 @@
 local M = {}
 
 ---
--- Factorial / Permutation (1 * ... * n)
+-- Factorial / Permutation (1 * ... * n) | Факториал
 -- To calculate the number of permutation options, for example.
 -- @param n Number
--- @return number 
+-- @return number
 function M.factorial(n)
   local res = 1
   for i = 1, n do
@@ -19,12 +19,14 @@ function M.factorial(n)
 end
 
 ---
--- Arrangement
--- Selection of k elements from n with regard to order
--- Or the formula for calculating the number of arrangements without repetitions
+-- Arrangement | Выборка
+-- Пример:
+-- Берем из 6 книг - 4 книги. Порядок имеет значение.
+-- Подсчитываем сколько вариантов, разместить эти 4 книги на полке.
+-- Между собой 4 книги так же могут меняться.
 -- @param n Number
 -- @param k Number
--- @return number 
+-- @return number
 function M.placement(n, k)
   return M.factorial(n) / M.factorial(n - k)
 end
@@ -34,7 +36,7 @@ end
 -- Selection without regard to order
 -- @param n Number
 -- @param k Number
--- @return number 
+-- @return number
 function M.combination(n, k)
   return M.factorial(n) / (M.factorial(n - k) * M.factorial(k))
 end
@@ -100,8 +102,18 @@ end
 -- @param x2 x2
 -- @param y2 y2
 -- @return float
-function M.distance2point(x1, y1, x2, y2) 
+function M.distance2point(x1, y1, x2, y2)
   return math.sqrt((x1 - x2)^2 + (y1 - y2)^2)
+end
+
+---
+-- Разделение целого и дробного числа
+-- @param n Number
+-- @return[1] integer
+-- @return[2] decimal
+function M.splitIntDec(n)
+  local integer = math.floor(n)
+  return integer, n - integer
 end
 
 return M

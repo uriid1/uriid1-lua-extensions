@@ -29,20 +29,21 @@ end
 -- @return boolean
 function M.isArray(t)
   if type(t) ~= 'table' then
-    return false
+    return false, nil
   end
 
-  local i = 1
-  for _ in next, t do
-    if t[i] == nil then
-      return false
+  local index = 0
+  for _,_ in next, t do
+    index = index + 1
+
+    if t[index] == nil then
+      return false, nil
     end
-
-    i = i + 1
   end
 
-  return true
+  return true, index
 end
+
 
 ---
 -- Returns the first element of the table, then deletes it by making an offset
