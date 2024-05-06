@@ -4,6 +4,36 @@
 
 local M = {}
 
+-- http://lua-users.org/lists/lua-l/2014-04/msg00590.html
+function M.utf8Sub(s, i, j)
+ i = i or 1
+ j = j or -1
+
+ if (i < 1) or (j < 1) then
+  local n = utf8.len(s)
+  if not n then
+    return nil
+  end
+
+  if i < 0 then i = n + 1 + i end
+  if j < 0 then j = n + 1 + j end
+  if i < 0 then i = 1 elseif i > n then i = n end
+  if j < 0 then j = 1 elseif j > n then j = n end
+ end
+
+  if j < i then
+    return ''
+  end
+
+   i = utf8.offset(s, i)
+   j = utf8.offset(s, j + 1)
+
+   if i and j then return s:sub(i, j - 1)
+      elseif i then return s:sub(i)
+      else return ''
+   end
+end
+
 ---
 -- Escaping special characters
 -- @param text String
@@ -117,6 +147,38 @@ function M.num2sep(num, sep)
   end
 
   return (minus >= 1 and '-' or '')..result
+end
+
+--- Lua format string
+-- @param text text
+-- @param args table
+function M.fstring(text, args)
+  local res, _ = string.gsub(text, '%${([%w_]+)}', args)
+  return res
+end
+
+--- Uppercase the First Letter in a text
+-- @param text text
+-- @param isUtf8 (boolean) true if string is utf8
+function M.upperFirstLetter(text, isUtf8)
+  if isUtf8 then
+    local sub = utf8 and utf8.sub or M.utf8Sub
+    return utf8.upper(sub(text, 1, 1))..sub(text, 2, -1)
+  end
+
+  return text:sub(1, 1):upper()..text:sub(2, -1)
+end
+
+--- Lowercase the First Letter in a text
+-- @param text text
+-- @param isUtf8 (boolean) true if string is utf8
+function M.lowerFirstLetter(text, isUtf8)
+  if isUtf8 then
+    local sub = utf8 and utf8.sub or M.utf8Sub
+    return utf8.lower(sub(text, 1, 1))..sub(text, 2, -1)
+  end
+
+  return text:sub(1, 1):lower()..text:sub(2, -1)
 end
 
 return M
