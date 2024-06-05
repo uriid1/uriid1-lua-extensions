@@ -1,6 +1,6 @@
 ---
 -- Module for working with math.
--- @module math
+-- @module ule.umath
 
 local M = {}
 

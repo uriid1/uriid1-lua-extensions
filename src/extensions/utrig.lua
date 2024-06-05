@@ -1,6 +1,6 @@
 ---
 -- Module for working with trigenometry.
--- @module utrig
+-- @module ule.ustrig
 
 local M = {}
 

@@ -1,6 +1,6 @@
 ---
 -- Module for working with date and time.
--- @module date
+-- @module ule.udate
 
 local M = {}
 

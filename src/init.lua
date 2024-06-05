@@ -12,8 +12,8 @@ local vec2 = require 'ule.extensions.vec2'
 return {
   ustring = ustring,
   utable = utable,
-  udate = umath,
-  umath = udate,
+  udate = udate,
+  umath = umath,
   utrig = utrig,
   vec2 = vec2,
 }

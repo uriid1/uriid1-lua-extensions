@@ -1,6 +1,6 @@
 ---
 -- Module for working with table.
--- @module table
+-- @module ule.utable
 
 local M = {}
 

@@ -1,6 +1,7 @@
 ---
 -- Module for working with string.
--- @module string
+-- @module ule.ustring
+local utf8 = require('utf8')
 
 local M = {}
 
