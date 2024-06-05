@@ -5,6 +5,19 @@
 local M = {}
 
 ---
+-- Get start of the day
+-- @param time Unix-time integer
+-- @return integer
+function M.getStartDayTime(time)
+  local date = os.date('*t', time)
+  date.hour = 0
+  date.min = 0
+  date.sec = 0
+
+  return os.time(date)
+end
+
+---
 -- Setting the time
 -- @param date Date table
 -- @param h Hours
