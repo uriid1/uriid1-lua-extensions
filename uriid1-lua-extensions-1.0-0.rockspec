@@ -7,7 +7,7 @@ source = {
 description = {
   summary = "Custom lua extensions.",
   detailed = [[
-    date, string, table, math, trig, vec2
+    udate, ustring, utable, umath, utrig, vec2
   ]],
 }
 dependencies = {
