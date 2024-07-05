@@ -1,11 +1,9 @@
----
--- Module for working with date and time.
+--- Module for working with date and time.
 -- @module ule.udate
 
 local M = {}
 
----
--- Get start of the day
+--- Get start of the day
 -- @param time Unix-time integer
 -- @return integer
 function M.getStartDayTime(time)
@@ -17,8 +15,7 @@ function M.getStartDayTime(time)
   return os.time(date)
 end
 
----
--- Setting the time
+--- Setting the time
 -- @param date Date table
 -- @param h Hours
 -- @param m Minutes
@@ -31,16 +28,14 @@ function M.setHours(date, h, m, s)
   return os.time(date)
 end
 
----
--- Get the current timezone
+--- Get the current timezone
 -- @return integer
 function M.getTimezone()
   local now = os.time()
   return os.difftime(now, os.time(os.date('!*t', now)))
 end
 
----
--- Conversion to ISO8601
+--- Conversion to ISO8601
 -- @param unixtime Unix time
 -- @return string
 function M.toIso8601(unixtime)
@@ -48,8 +43,7 @@ function M.toIso8601(unixtime)
   return os.date('!%Y-%m-%dT%TZ', unixtime)
 end
 
----
--- Conversion ISO8601 to unixtime
+--- Conversion ISO8601 to unixtime
 -- @param date String
 -- @return integer or nil
 function M.toUnix(date)
@@ -69,6 +63,13 @@ function M.toUnix(date)
   end
 
   return os.time({year=yy, month=mm, day=dd, hour=hh, min=min, sec=sec})
+end
+
+--- Возвращает количество прошедших дней от заданного времени ( unix time )
+-- @param time unixtime
+-- @return integer
+function M.time2days(time)
+  return math.floor((os.time() - time) / 86400)
 end
 
 return M

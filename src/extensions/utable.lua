@@ -229,5 +229,4 @@ function M.fillUniqNubersArr(arr_len, rnd_range)
   return result
 end
 
-
 return M

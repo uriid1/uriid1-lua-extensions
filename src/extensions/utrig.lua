@@ -1,11 +1,9 @@
----
--- Module for working with trigenometry.
+--- Module for working with trigenometry.
 -- @module ule.ustrig
 
 local M = {}
 
----
--- lengthdirX
+--- lengthdirX
 -- @param length Length
 -- @param direction Direction
 -- @return float
@@ -13,8 +11,7 @@ function M.lengthdirX(length, direction)
   return length * math.cos(direction)
 end
 
----
--- lengthdirY
+--- lengthdirY
 -- @param length Length
 -- @param direction Direction
 -- @return float
@@ -22,8 +19,7 @@ function M.lengthdirY(length, direction)
   return length * math.sin(direction)
 end
 
----
--- distance2point
+--- distance2point
 -- @param x1 x1
 -- @param y1 y1
 -- @param x2 x2

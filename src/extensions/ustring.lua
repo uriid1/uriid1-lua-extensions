@@ -1,7 +1,12 @@
----
--- Module for working with string.
+--- Module for working with string.
 -- @module ule.ustring
-local utf8 = require('utf8')
+local utf8 = utf8
+if not utf8 then
+  local res, module = pcall(require, 'utf8')
+  if res then
+    utf8 = module
+  end
+end
 
 local M = {}
 
@@ -35,8 +40,7 @@ function M.utf8Sub(s, i, j)
    end
 end
 
----
--- Escaping special characters
+--- Escaping special characters
 -- @param text String
 -- @return string
 function M.escape(text)
@@ -44,8 +48,7 @@ function M.escape(text)
   return result
 end
 
----
--- Removes duplicate characters in a string
+--- Removes duplicate characters in a string
 -- @param text String
 -- @param optional Table with references to sub and gmatch functions
 -- @return string
@@ -66,8 +69,7 @@ function M.delrep(text, optional)
   return result
 end
 
----
--- String split
+--- String split
 -- @param text String
 -- @param sep Separator
 -- @param max Separator boundary
@@ -90,32 +92,28 @@ function M.split(text, sep, max)
   return result
 end
 
----
--- String trim
+--- String trim
 -- @param text String
 -- @return string
 function M.trim(text)
   return text:match("^%s*(.-)%s*$")
 end
 
----
--- String left trim
+--- String left trim
 -- @param text String
 -- @return string
 function M.ltrim(text)
   return text:match("^%s*(.+)")
 end
 
----
--- String right trim
+--- String right trim
 -- @param text String
 -- @return string
 function M.rtrim(text)
   return text:match("(.-)%s*$")
 end
 
----
--- Adding a separator to a number 1000000 -> 1.000.000
+--- Adding a separator to a number 1000000 -> 1.000.000
 -- @param num Number
 -- @param sep Separator
 -- @return string
