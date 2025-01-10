@@ -113,6 +113,13 @@ function M.rtrim(text)
   return text:match("(.-)%s*$")
 end
 
+--- Trim start and end new line
+-- @param text String
+-- @return string
+function M.newLineTrim(text)
+  return text:gsub('^\n(.*)\n$', '%1')
+end
+
 --- Adding a separator to a number 1000000 -> 1.000.000
 -- @param num Number
 -- @param sep Separator
@@ -151,8 +158,26 @@ end
 --- Lua format string
 -- @param text text
 -- @param args table
+-- luacheck: ignore loadstring
 function M.fstring(text, args)
   local res, _ = string.gsub(text, '%${([%w_]+)}', args)
+
+  res, _ = res:gsub('{{%s*(.-)%s*}}(\n+)', function (temp, nl)
+    local func, err = (load or loadstring)(temp)
+    local res
+    if not err then
+      res = func()
+
+      if res == nil then
+        return ''
+      end
+
+      return res .. nl
+    end
+
+    return ''
+  end)
+
   return res
 end
 
