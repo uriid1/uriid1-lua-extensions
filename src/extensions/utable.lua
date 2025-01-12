@@ -122,6 +122,7 @@ function M.fill(t, value, start, done)
   for i = start, done do
     t[i] = value
   end
+  return t
 end
 
 --- Returns a string representation of array elements
@@ -169,6 +170,7 @@ function M.getSumDupl(arr)
 end
 
 --- Fills an array with unique random numbers
+-- Unsupported, the algorithm is not successful
 -- @param arr_len (number) The length of the array
 -- @param rnd_range (number) The maximum range of values, must be greater than arr_len
 -- @return Array with unique values

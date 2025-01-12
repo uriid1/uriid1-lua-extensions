@@ -155,28 +155,35 @@ function M.num2sep(num, sep)
   return (minus >= 1 and '-' or '')..result
 end
 
---- Lua format string
--- @param text text
--- @param args table
 -- luacheck: ignore loadstring
-function M.fstring(text, args)
+
+--- Lua format string
+-- @param text (text)
+-- @param args (table)
+-- @param[optchain] opts (table) options
+-- @param opts.eval (boolean) eval lua code
+function M.fstring(text, args, opts)
+  local eval = opts and opts.eval or false
+
   local res, _ = string.gsub(text, '%${([%w_]+)}', args)
 
-  res, _ = res:gsub('{{%s*(.-)%s*}}(\n+)', function (temp, nl)
-    local func, err = (load or loadstring)(temp)
-    local res
-    if not err then
+  if eval then
+    res, _ = res:gsub('([\n]-){{%s*(.-)%s*}}?([\n]-)', function (nl1, temp, nl2)
+      local func, err = (load or loadstring)(temp)
+      local res
+      if err then
+        return err
+      end
+
       res = func()
 
       if res == nil then
         return ''
       end
 
-      return res .. nl
-    end
-
-    return ''
-  end)
+      return nl1 .. res .. nl2
+    end)
+  end
 
   return res
 end
