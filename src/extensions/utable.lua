@@ -171,61 +171,31 @@ end
 
 --- Fills an array with unique random numbers
 -- Unsupported, the algorithm is not successful
--- @param arr_len (number) The length of the array
--- @param rnd_range (number) The maximum range of values, must be greater than arr_len
+-- @param len (number) The length of the array
+-- @param range (number) The maximum range of values, must be greater than arr_len
 -- @return Array with unique values
-function M.fillUniqNubersArr(arr_len, rnd_range)
-  if rnd_range < arr_len then
+function M.genUniqNum(len, range)
+  if range < len then
     return nil
   end
 
+  math.randomseed(os.time())
+
+  -- pool = {1, 2, ..., range}
+  local pool = {}
+  for i = 1, range do
+    pool[i] = i
+  end
+
+  -- Fisher–Yates shuffle
+  for i = range, 2, -1 do
+    local j = math.random(i)  -- j in [1, i]
+    pool[i], pool[j] = pool[j], pool[i]
+  end
+
   local result = {}
-  local seen = {}
-
-  for i = 1, arr_len do
-    math.randomseed(os.clock())
-    local rnd = math.random(rnd_range)
-
-    if seen[rnd] == nil then
-      seen[rnd] = true
-    else
-      local tmpVal = i
-      if seen[tmpVal] == nil then
-        seen[tmpVal] = true
-        rnd = tmpVal
-        goto finalize
-      end
-
-      local tmpVal = math.max(1, math.min(rnd_range, rnd - 1))
-      if seen[tmpVal] == nil then
-        seen[tmpVal] = true
-        rnd = tmpVal
-        goto finalize
-      end
-
-      local tmpVal = math.max(1, math.min(rnd_range, rnd + 1))
-      if seen[tmpVal] == nil then
-        seen[tmpVal] = true
-        rnd = tmpVal
-        goto finalize
-      end
-
-      local newRnd
-      local dupl = true
-      while dupl do
-        math.randomseed(os.clock())
-        newRnd = math.random(rnd_range)
-
-        dupl = not (seen[newRnd] == nil)
-      end
-
-      rnd = newRnd
-      seen[rnd] = true
-
-      ::finalize::
-    end
-
-    table.insert(result, rnd)
+  for i = 1, len do
+    result[i] = pool[i]
   end
 
   return result

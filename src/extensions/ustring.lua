@@ -125,6 +125,10 @@ end
 -- @param sep Separator
 -- @return string
 function M.num2sep(num, sep)
+  if num == nil then
+    return 'nil'
+  end
+
   if num < 1000 then
     return num
   end
