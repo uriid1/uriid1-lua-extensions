@@ -1,5 +1,5 @@
 ---
--- Module for working with table.
+-- Module for working with table
 -- @module ule.utable
 
 local M = {}

@@ -45,6 +45,7 @@ end
 -- @return string
 function M.escape(text)
   local result, _ = text:gsub('[%(%)%.%%%+%-%*%?%[%]%^%$]', '%%%0')
+
   return result
 end
 
@@ -121,30 +122,39 @@ function M.newLineTrim(text)
 end
 
 --- Adding a separator to a number 1000000 -> 1.000.000
--- @param num Number
--- @param sep Separator
+-- @param value (number | string)
+-- @param[optchain] opts (table) options
+-- @param[optchain] opts.separator (string) separator
 -- @return string
-function M.num2sep(num, sep)
-  if num == nil then
+function M.num2sep(value, opts)
+  if value == nil then
     return 'nil'
   end
 
-  if num < 1000 then
-    return num
+  opts = opts or {}
+
+  if value < 1000 then
+    if opts.sign then
+      if value >= 0 then
+        return '+' .. tostring(value)
+      end
+    end
+
+    return value
   end
 
-  num = tostring(num)
-  sep = sep or '.'
+  value = tostring(value)
 
-  local len = #num
+  local len = #value
   if len <= 3 then
-    return num
+    return value
   end
 
-  local num, minus = num:gsub('^%-', '')
+  local num, minus = value:gsub('^%-', '')
 
   local result = ''
   local sepCount = 0
+  local sep = opts.separator or '.'
 
   for i = len, 1, -1 do
     if sepCount == 3 then
@@ -156,7 +166,15 @@ function M.num2sep(num, sep)
     sepCount = sepCount + 1
   end
 
-  return (minus >= 1 and '-' or '')..result
+  if minus >= 1 then
+    return '-' .. result
+  end
+
+  if opts.sign then
+    return '+' .. result
+  end
+
+  return result
 end
 
 -- luacheck: ignore loadstring
