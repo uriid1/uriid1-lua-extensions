@@ -1,7 +1,11 @@
 --- Module for working with date and time.
 -- @module ule.udate
 
-local M = {}
+local DAY_SEC = 86400
+
+local M = {
+  day_sec = DAY_SEC
+}
 
 --- Get start of the day
 -- @param time Unix-time integer
@@ -62,14 +66,21 @@ function M.toUnix(date)
     return nil
   end
 
-  return os.time({year=yy, month=mm, day=dd, hour=hh, min=min, sec=sec})
+  return os.time({
+    year = yy,
+    month = mm,
+    day = dd,
+    hour = hh,
+    min = min,
+    sec = sec
+  })
 end
 
 --- Возвращает количество прошедших дней от заданного времени ( unix time )
 -- @param time unixtime
 -- @return integer
 function M.time2days(time)
-  return math.floor((os.time() - time) / 86400)
+  return math.floor((os.time() - time) / DAY_SEC)
 end
 
 return M
