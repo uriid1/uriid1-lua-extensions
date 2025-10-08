@@ -89,4 +89,15 @@ function M.normalizeRange(value, max_value, out_range_min, out_range_max)
   return out_range_min + (value / max_value) * (out_range_max - out_range_min)
 end
 
+--- Выбор случайного значения из множества
+-- @param ... Any любой тип
+function M.choose(...)
+  math.randomseed(os.time())
+  local r = select(
+    math.random(select('#', ...)),
+    ...
+  )
+  return r
+end
+
 return M
