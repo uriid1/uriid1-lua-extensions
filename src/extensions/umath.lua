@@ -92,7 +92,6 @@ end
 --- Выбор случайного значения из множества
 -- @param ... Any любой тип
 function M.choose(...)
-  math.randomseed(os.time())
   local r = select(
     math.random(select('#', ...)),
     ...
