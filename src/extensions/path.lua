@@ -1,23 +1,30 @@
---- Модуль для работы с путями
+--- Path utilities module
 -- @module ule.path
 local M = {}
 
+--- Path separator used by the current platform
 local SEP = package.config:sub(1, 1)
 
---- Возвращает поддиректорию
--- @param dir Директория
--- @param deep Уровень глубины поддиректории
+
+--- Get a parent directory by depth level
+-- Extracts a subpath located above the specified depth
+-- @param dir (string) Absolute or relative path
+-- @param[opt=1] deep (number) Depth level to go up
+-- @return string|nil Subdirectory path or `nil` if no match
 function M.getSubDir(dir, deep)
   deep = deep or 1
   local sub_re = "[%w%d_]+"
   -- ^(.-)/[%w%d_]+/?$
   local re = "^(.-)"..SEP..(sub_re..SEP):rep(deep).."?$"
+
   return dir:match(re)
 end
 
---- Склейка путей
--- @param path_1 Первый путь
--- @param path_2 Второй путь
+--- Join two paths using the correct separator
+-- Avoids duplicate or missing separators
+-- @param path_1 string First path
+-- @param path_2 string Second path
+-- @return string Joined path
 function M.join(path_1, path_2)
   local path_1_sep = path_1:sub(-1, -1)
   local path_2_sep = path_2:sub(1, 1)

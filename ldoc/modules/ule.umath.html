@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/ule.bit.html">ule.bit</a></li>
+  <li><a href="../modules/ule.path.html">ule.path</a></li>
+  <li><a href="../modules/ule.test.html">ule.test</a></li>
+  <li><a href="../modules/ule.udate.html">ule.udate</a></li>
+  <li><strong>ule.umath</strong></li>
+  <li><a href="../modules/ule.ustring.html">ule.ustring</a></li>
+  <li><a href="../modules/ule.utable.html">ule.utable</a></li>
+  <li><a href="../modules/ule.ustrig.html">ule.ustrig</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/vec2.html">vec2</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>ule.umath</code></h1>
+<p>Math utilities</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#factorial">factorial (n)</a></td>
+	<td class="summary">Factorial / Permutation (1 * ...</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#placement">placement (n, k)</a></td>
+	<td class="summary">Arrangement | Выборка
+ Example: choosing 4 books from 6, where order matters.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#combination">combination (n, k)</a></td>
+	<td class="summary">Combination
+ Selection without regard to order</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#sign">sign (x)</a></td>
+	<td class="summary">sign</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#round">round (x)</a></td>
+	<td class="summary">round</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#clamp">clamp (val, val_min, val_max)</a></td>
+	<td class="summary">clamp</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#lerp">lerp (v0, v1, t)</a></td>
+	<td class="summary">lerp</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#splitIntDec">splitIntDec (n)</a></td>
+	<td class="summary">Split a number into integer and fractional parts</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#normalizeRange">normalizeRange (value, max_value, out_range_min, out_range_max)</a></td>
+	<td class="summary">Normalize a value from one range into another
+ Maps an input value proportionally from `[0, max_value]` to `[out_range_min, out_range_max]`</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#choose">choose (...)</a></td>
+	<td class="summary">Choose a random value from a variable list.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "factorial"></a>
+    <strong>factorial (n)</strong>
+    </dt>
+    <dd>
+    Factorial / Permutation (1 * ...  * n) | Факториал
+ To calculate the number of permutation options, for example.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">n</span>
+         Number
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "placement"></a>
+    <strong>placement (n, k)</strong>
+    </dt>
+    <dd>
+    Arrangement | Выборка
+ Example: choosing 4 books from 6, where order matters.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">n</span>
+         (number) Total elements
+        </li>
+        <li><span class="parameter">k</span>
+         (number) Chosen elements
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        (number) Number of arrangements
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="global">print</span>(M.<span class="function-name">placement</span>(<span class="number">6</span>, <span class="number">4</span>)) <span class="comment">-- 360</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "combination"></a>
+    <strong>combination (n, k)</strong>
+    </dt>
+    <dd>
+    Combination
+ Selection without regard to order
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">n</span>
+         Number
+        </li>
+        <li><span class="parameter">k</span>
+         Number
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "sign"></a>
+    <strong>sign (x)</strong>
+    </dt>
+    <dd>
+    sign
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         int
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "round"></a>
+    <strong>round (x)</strong>
+    </dt>
+    <dd>
+    round
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         int
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "clamp"></a>
+    <strong>clamp (val, val_min, val_max)</strong>
+    </dt>
+    <dd>
+    clamp
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">val</span>
+         Source value
+        </li>
+        <li><span class="parameter">val_min</span>
+         Minimal value
+        </li>
+        <li><span class="parameter">val_max</span>
+         Maximal value
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "lerp"></a>
+    <strong>lerp (v0, v1, t)</strong>
+    </dt>
+    <dd>
+    lerp
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">v0</span>
+         Source value
+        </li>
+        <li><span class="parameter">v1</span>
+         To value
+        </li>
+        <li><span class="parameter">t</span>
+         Time
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        float
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "splitIntDec"></a>
+    <strong>splitIntDec (n)</strong>
+    </dt>
+    <dd>
+    Split a number into integer and fractional parts
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">n</span>
+         (number) Input value
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        (integer) Integer part</li>
+        <li>
+        (number) Fractional part</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> int, frac = M.<span class="function-name">splitIntDec</span>(<span class="number">12.34</span>)
+<span class="global">print</span>(int, frac) <span class="comment">-- 12  0.34</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "normalizeRange"></a>
+    <strong>normalizeRange (value, max_value, out_range_min, out_range_max)</strong>
+    </dt>
+    <dd>
+    Normalize a value from one range into another
+ Maps an input value proportionally from `[0, max_value]` to `[out_range_min, out_range_max]`
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         (number) Current value
+        </li>
+        <li><span class="parameter">max_value</span>
+         (number) Maximum input value
+        </li>
+        <li><span class="parameter">out_range_min</span>
+         (number) Minimum output range value
+        </li>
+        <li><span class="parameter">out_range_max</span>
+         (number) Maximum output range value
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        (number) Scaled value
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="global">print</span>(M.<span class="function-name">normalizeRange</span>(<span class="number">50</span>, <span class="number">100</span>, <span class="number">0</span>, <span class="number">1</span>)) <span class="comment">-- 0.5</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "choose"></a>
+    <strong>choose (...)</strong>
+    </dt>
+    <dd>
+    Choose a random value from a variable list.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+        ) any One or more values
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        (any) Randomly selected value
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="global">print</span>(M.<span class="function-name">choose</span>(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>))</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-11-05 20:55:18 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

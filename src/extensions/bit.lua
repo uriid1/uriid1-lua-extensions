@@ -1,4 +1,4 @@
---- Модуль для работы с битами
+--- Bitwise utilities module
 -- @module ule.bit
 local M = {}
 
@@ -13,9 +13,9 @@ local function count_bits(x)
   return count
 end
 
---- Подсчет количества бит
--- @param x число
--- @return количество бит
+--- Get number of bits required to represent a number
+-- @param x (number) Input value
+-- @return (number) Bit count
 function M.getBitsCount(x)
   if math.frexp then
     return math.max(1, select(2, math.frexp(x)))
@@ -24,15 +24,15 @@ function M.getBitsCount(x)
   end
 end
 
---- Преобразование числа в строку двоичного представления
---- точность до 2^50
--- @param num Число
--- @param opts[optchain] Опции
--- @param opts.bits Количество бит
--- @param opts.to_array Вернет массив байтов
--- @return набор бит
+--- Convert a number to its binary representation
+-- Precision limited to 2^50
+-- @param num number Input value
+-- @param[optchain] opts table Options
+-- @param[opt] opts.bits number Force output bit width
+-- @param[opt] opts.to_array boolean Return bit array instead of string
+-- @return string|table Binary representation as string or array
 -- @usage
--- local bits = tobits(255) -- '11111111'
+-- local bits = M.tobits(255) -- "11111111"
 function M.tobits(num, opts)
   assert(num > PRECISION_LIMIT == false,
     'Вышли за предел точности, допустимый предел - 2^50')
@@ -57,16 +57,15 @@ function M.tobits(num, opts)
   return table.concat(data_bits)
 end
 
---- Преобразование набора битов -
---- из строкового или табличного представления в числовое.
---- Точность до 2^50
--- @param bin Число или массив байт
--- @param opts[optchain] Опции
--- @param opts.bits Количество бит
--- @param opts.from_array Преобразование массива байт
--- @return числовое представление бит
+--- Convert a binary sequence (string or array) to a number
+-- Precision limited to 2^50
+-- @param bin string|table Binary data
+-- @param[optchain] opts table Options
+-- @param[opt] opts.bits number Bit length
+-- @param[opt] opts.from_array boolean Interpret input as bit array
+-- @return number Decimal value
 -- @usage
--- local num = tonum('11111111') -- 255
+-- local num = M.tonum("11111111") -- 255
 function M.tonum(bin, opts)
   local bits_len = #bin
 
@@ -89,24 +88,22 @@ function M.tonum(bin, opts)
   return math.floor(sum)
 end
 
---- Получение байт из числа, точность 6 байт
--- @param num Число
--- @return массив байт
+--- Extract bytes from a number
+-- Precision: up to 6 bytes (48 bits)
+-- @param num number Input value
+-- @return table Array of bytes (most significant first)
 -- @usage
--- local bytes = M.getbytes(0xAAFFCCDDA1C1)
+-- local bytes = M.getBytes(0xAAFFCCDDA1C1)
 -- for i = 1, #bytes do
---   print(string.format("Байт %d: 0x%02X", i, bytes[i]))
+--   print(string.format("Byte %d: 0x%02X", i, bytes[i]))
 -- end
 function M.getBytes(num)
   local bytes = {}
   local byte_count = math.ceil(M.getBitsCount(num) / 8)
 
   for _ = 1, byte_count do
-    -- Младший байт
     local byte = num % 256
     table.insert(bytes, 1, byte)
-
-    -- Удаление младшего байт из числа
     num = math.floor(num / 256)
   end
 

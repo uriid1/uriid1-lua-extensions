@@ -1,4 +1,4 @@
---- Модуль для тестирования
+--- Benchmark and function testing utilities
 -- @module ule.test
 local M = {}
 
@@ -6,8 +6,8 @@ local unpack = unpack or table.unpack
 
 local DEFAULT_MAX_SEEN = 1000
 
--- Поиск имени функции по адресу
---
+--- Internal cache for resolved function names.
+-- @local
 local seenArg = {}
 
 local function findNameByAddr(addr, level)
@@ -38,16 +38,13 @@ local function findNameByAddr(addr, level)
 
   return nil
 end
---
 
---- Тестирует скорость выполнения функции
--- @param param Параметры
--- @param param.func Тестируемая функция
--- @param param.args Массив аргументов функции
--- @param param.count Количество вызовов функции
--- @return время за которое выполнился тест
--- @usage
--- bench({ func = print, args = { 'Hello, World!' }, count = 100 })
+--- Find a variable name by its memory address
+-- Searches among local variables and global environment
+-- @local
+-- @param addr function|table Reference to locate
+-- @param level number Stack level for `debug.getlocal`
+-- @return string|nil Variable name if found
 function M.bench(param)
   param.count = param.count or 1
   local summary

@@ -1,4 +1,4 @@
---- Module for working with date and time.
+--- Date and time utilities
 -- @module ule.udate
 
 local DAY_SEC = 86400
@@ -7,9 +7,9 @@ local M = {
   day_sec = DAY_SEC
 }
 
---- Get start of the day
--- @param time Unix-time integer
--- @return integer
+--- Get the Unix timestamp for the start of the given day
+-- @param time (number) Unix timestamp
+-- @return (number) Start of day timestamp
 function M.getStartDayTime(time)
   local date = os.date('*t', time)
   date.hour = 0
@@ -19,12 +19,12 @@ function M.getStartDayTime(time)
   return os.time(date)
 end
 
---- Setting the time
--- @param date Date table
--- @param h Hours
--- @param m Minutes
--- @param s Seconds
--- @return integer
+--- Set hours, minutes, and seconds for a given date table
+-- @param date (table) Date table (from `os.date('*t')`)
+-- @param h (number) Hours
+-- @param m (number) Minutes
+-- @param s (number) Seconds
+-- @return (number) Unix timestamp for the updated date
 function M.setHours(date, h, m, s)
   date.hour = h
   date.min = m
@@ -33,23 +33,27 @@ function M.setHours(date, h, m, s)
 end
 
 --- Get the current timezone
--- @return integer
+-- @return (number) Offset in seconds
 function M.getTimezone()
   local now = os.time()
   return os.difftime(now, os.time(os.date('!*t', now)))
 end
 
 --- Conversion to ISO8601
--- @param unixtime Unix time
--- @return string
+-- @param[opt] unixtime number Unix timestamp (default: current time)
+-- @return string ISO8601 formatted string (UTC)
+-- @usage
+-- print(M.toIso8601(os.time())) -- "2025-11-05T14:20:31Z"
 function M.toIso8601(unixtime)
   unixtime = unixtime or os.time()
   return os.date('!%Y-%m-%dT%TZ', unixtime)
 end
 
---- Conversion ISO8601 to unixtime
--- @param date String
--- @return integer or nil
+--- Convert ISO8601 string to Unix timestamp.
+-- @param date (string) ISO8601 formatted datetime
+-- @return (number|nil) Unix timestamp or `nil` if invalid
+-- @usage
+-- local ts = M.toUnix("2025-11-05T14:20:31Z")
 function M.toUnix(date)
   if type(date) ~= 'string' then
     return nil
@@ -76,9 +80,11 @@ function M.toUnix(date)
   })
 end
 
---- Возвращает количество прошедших дней от заданного времени ( unix time )
--- @param time unixtime
--- @return integer
+--- Get number of days passed since the given Unix timestamp.
+-- @param time (number) Unix timestamp
+-- @return (number) Days since `time`
+-- @usage
+-- print(M.time2days(os.time() - 172800)) -- 2
 function M.time2days(time)
   return math.floor((os.time() - time) / DAY_SEC)
 end

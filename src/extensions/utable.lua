@@ -1,5 +1,4 @@
----
--- Module for working with table
+--- Table utilities
 -- @module ule.utable
 
 local M = {}
@@ -170,7 +169,6 @@ function M.getSumDupl(arr)
 end
 
 --- Fills an array with unique random numbers
--- Unsupported, the algorithm is not successful
 -- @param len (number) The length of the array
 -- @param range (number) The maximum range of values, must be greater than arr_len
 -- @return Array with unique values
@@ -178,8 +176,6 @@ function M.genUniqNum(len, range)
   if range < len then
     return nil
   end
-
-  math.randomseed(os.time())
 
   -- pool = {1, 2, ..., range}
   local pool = {}

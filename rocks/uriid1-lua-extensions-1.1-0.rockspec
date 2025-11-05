@@ -1,18 +1,25 @@
--- ule-1.0-0.rockspec
+-- ule-1.1-0.rockspec
 package = "uriid1-lua-extensions"
-version = "1.0-0"
+version = "1.1-0"
+
 source = {
   url = "git+https://github.com/uriid1/uriid1-lua-extensions.git",
+  tag = "v1.1"
 }
+
 description = {
-  summary = "Custom lua extensions.",
+  summary = "A collection of lightweight Lua extensions and utility modules",
   detailed = [[
-    udate, ustring, utable, umath, utrig, vec2, path, bit, test
+    This package provides a set of small, focused Lua modules extending
+    standard functionality: math, date/time, bit operations, path handling,
+    string, tables, testing, and more.
   ]],
 }
+
 dependencies = {
   "lua >= 5.1"
 }
+
 build = {
   type = "builtin",
   modules = {

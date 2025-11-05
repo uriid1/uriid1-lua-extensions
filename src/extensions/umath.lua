@@ -1,4 +1,4 @@
---- Module for working with math.
+--- Math utilities
 -- @module ule.umath
 
 local M = {}
@@ -17,13 +17,12 @@ function M.factorial(n)
 end
 
 --- Arrangement | Выборка
--- Пример:
--- Берем из 6 книг - 4 книги. Порядок имеет значение.
--- Подсчитываем сколько вариантов, разместить эти 4 книги на полке.
--- Между собой 4 книги так же могут меняться.
--- @param n Number
--- @param k Number
--- @return number
+-- Example: choosing 4 books from 6, where order matters.
+-- @param n (number) Total elements
+-- @param k (number) Chosen elements
+-- @return (number) Number of arrangements
+-- @usage
+-- print(M.placement(6, 4)) -- 360
 function M.placement(n, k)
   return M.factorial(n) / M.factorial(n - k)
 end
@@ -69,28 +68,38 @@ function M.lerp(v0, v1, t)
   return v0 * (1.0 - t) + t * v1
 end
 
---- Разделение целого и дробного числа
--- @param n Number
--- @return[1] integer
--- @return[2] decimal
+--- Split a number into integer and fractional parts
+-- @param n (number) Input value
+-- @return (integer) Integer part
+-- @return (number) Fractional part
+-- @usage
+-- local int, frac = M.splitIntDec(12.34)
+-- print(int, frac) -- 12  0.34
 function M.splitIntDec(n)
   local integer = math.floor(n)
   return integer, n - integer
 end
 
---- Приведение одного диапазона к другому
--- @param value Number Текущее значение
--- @param max_value Number Максимальное значение
--- @param out_range_min Number Выходное минимальное значение для диапазона
--- @param out_range_max Number Выходное максимальное значение для диапазона
+--- Normalize a value from one range into another
+-- Maps an input value proportionally from `[0, max_value]` to `[out_range_min, out_range_max]`
+-- @param value (number) Current value
+-- @param max_value (number) Maximum input value
+-- @param out_range_min (number) Minimum output range value
+-- @param out_range_max (number) Maximum output range value
+-- @return (number) Scaled value
+-- @usage
+-- print(M.normalizeRange(50, 100, 0, 1)) -- 0.5
 function M.normalizeRange(value, max_value, out_range_min, out_range_max)
   -- Масштабирование значения входного диапазона: (value / max_value)
   -- Масштабирование нормализованного значения к выходному диапазону
   return out_range_min + (value / max_value) * (out_range_max - out_range_min)
 end
 
---- Выбор случайного значения из множества
--- @param ... Any любой тип
+--- Choose a random value from a variable list.
+-- @param (...) any One or more values
+-- @return (any) Randomly selected value
+-- @usage
+-- print(M.choose("a", "b", "c"))
 function M.choose(...)
   local r = select(
     math.random(select('#', ...)),

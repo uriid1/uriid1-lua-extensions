@@ -1,4 +1,4 @@
---- Vector 2D class.
+--- Vector 2D class
 -- @classmod vec2
 
 local vec2 = {}

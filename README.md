@@ -1,3 +1,18 @@
+# (ule) uriid1-lua-extensions
+
+A collection of lightweight **Lua utility modules**, extending the standard library with practical helpers for math, bitwise operations, date/time, paths, tables, strings, vectors, and more.  
+Designed for clean, minimal code and compatibility with **Lua 5.1+**.
+
+---
+
+## 📦 Installation
+
+Via **LuaRocks**:
+
+```bash
+luarocks install uriid1-lua-extensions
+```
+
 # Usage
 ```lua
 local ule = require('ule')

@@ -1,5 +1,6 @@
---- Module for working with string.
+--- String utilities
 -- @module ule.ustring
+
 local utf8 = utf8
 if not utf8 then
   local res, module = pcall(require, 'utf8')

@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/ule.bit.html">ule.bit</a></li>
+  <li><a href="../modules/ule.path.html">ule.path</a></li>
+  <li><a href="../modules/ule.test.html">ule.test</a></li>
+  <li><a href="../modules/ule.udate.html">ule.udate</a></li>
+  <li><a href="../modules/ule.umath.html">ule.umath</a></li>
+  <li><a href="../modules/ule.ustring.html">ule.ustring</a></li>
+  <li><strong>ule.utable</strong></li>
+  <li><a href="../modules/ule.ustrig.html">ule.ustrig</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/vec2.html">vec2</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>ule.utable</code></h1>
+<p>Table utilities</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#isEmpty">isEmpty (t)</a></td>
+	<td class="summary">Checking if a table is empty</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isTable">isTable (t)</a></td>
+	<td class="summary">Checking if it is a table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isArray">isArray (t)</a></td>
+	<td class="summary">Checking if a table is an array</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#shift">shift (t)</a></td>
+	<td class="summary">Returns the first element of the table, then deletes it by making an offset</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#merge">merge (t1, t2)</a></td>
+	<td class="summary">Merging table t2 into t1 (is not deep copy)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#compare">compare (t1, t2)</a></td>
+	<td class="summary">Compare t1 and t2</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#reverse">reverse (t)</a></td>
+	<td class="summary">Reverse the table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fill">fill (t, value, start, done)</a></td>
+	<td class="summary">Fills all elements of the array from the start to the end(done) indexes with a single value</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#toString">toString (t, sep, start, done)</a></td>
+	<td class="summary">Returns a string representation of array elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#shake">shake (t)</a></td>
+	<td class="summary">Shuffles the table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getSumDupl">getSumDupl (arr)</a></td>
+	<td class="summary">Gets the count of duplicates in an array</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#genUniqNum">genUniqNum (len, range)</a></td>
+	<td class="summary">Fills an array with unique random numbers</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "isEmpty"></a>
+    <strong>isEmpty (t)</strong>
+    </dt>
+    <dd>
+    Checking if a table is empty
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         Table
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isTable"></a>
+    <strong>isTable (t)</strong>
+    </dt>
+    <dd>
+    Checking if it is a table
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         Table
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isArray"></a>
+    <strong>isArray (t)</strong>
+    </dt>
+    <dd>
+    Checking if a table is an array
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         Table
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "shift"></a>
+    <strong>shift (t)</strong>
+    </dt>
+    <dd>
+    Returns the first element of the table, then deletes it by making an offset
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         Table
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        first element or empty table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "merge"></a>
+    <strong>merge (t1, t2)</strong>
+    </dt>
+    <dd>
+    Merging table t2 into t1 (is not deep copy)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t1</span>
+         Table
+        </li>
+        <li><span class="parameter">t2</span>
+         Table
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "compare"></a>
+    <strong>compare (t1, t2)</strong>
+    </dt>
+    <dd>
+    Compare t1 and t2
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t1</span>
+         Table
+        </li>
+        <li><span class="parameter">t2</span>
+         Table
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "reverse"></a>
+    <strong>reverse (t)</strong>
+    </dt>
+    <dd>
+    Reverse the table
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         Table
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fill"></a>
+    <strong>fill (t, value, start, done)</strong>
+    </dt>
+    <dd>
+    Fills all elements of the array from the start to the end(done) indexes with a single value
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         Table
+        </li>
+        <li><span class="parameter">value</span>
+         Value
+        </li>
+        <li><span class="parameter">start</span>
+         Start of fill
+        </li>
+        <li><span class="parameter">done</span>
+         End of fill
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "toString"></a>
+    <strong>toString (t, sep, start, done)</strong>
+    </dt>
+    <dd>
+    Returns a string representation of array elements
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         Table
+        </li>
+        <li><span class="parameter">sep</span>
+         Separator
+        </li>
+        <li><span class="parameter">start</span>
+         Start
+        </li>
+        <li><span class="parameter">done</span>
+         End
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "shake"></a>
+    <strong>shake (t)</strong>
+    </dt>
+    <dd>
+    Shuffles the table
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         Table
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getSumDupl"></a>
+    <strong>getSumDupl (arr)</strong>
+    </dt>
+    <dd>
+    Gets the count of duplicates in an array
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">arr</span>
+         (table) Array
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number of duplicates
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "genUniqNum"></a>
+    <strong>genUniqNum (len, range)</strong>
+    </dt>
+    <dd>
+    Fills an array with unique random numbers
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">len</span>
+         (number) The length of the array
+        </li>
+        <li><span class="parameter">range</span>
+         (number) The maximum range of values, must be greater than arr_len
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Array with unique values
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-11-05 20:55:18 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
