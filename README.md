@@ -5,7 +5,7 @@ Designed for clean, minimal code and compatibility with **Lua 5.1+**.
 
 ---
 
-## 📦 Installation
+## Installation
 
 Via **LuaRocks**:
 
@@ -31,4 +31,12 @@ local test = ule.test
 # Gen LDOC
 ```bash
 ldoc -s '!new' -d ldoc src/extensions
+```
+
+# Run tests
+```bash
+# Install luaunit
+bash ule.post-install.sh
+# Run all tests (lua5.1, luajit only)
+lua -lluacov test/run_all_tests.lua
 ```

@@ -35,7 +35,7 @@ end
 -- local bits = M.tobits(255) -- "11111111"
 function M.tobits(num, opts)
   assert(num > PRECISION_LIMIT == false,
-    'Вышли за предел точности, допустимый предел - 2^50')
+    'Exceeded precision limit, maximum allowed is 2^50')
 
   local bits
   if opts and opts.bits then
@@ -70,7 +70,7 @@ function M.tonum(bin, opts)
   local bits_len = #bin
 
   assert(bits_len > PRECISION_LIMIT == false,
-    'Вышли за предел точности, допустимый предел - 2^50')
+    'Exceeded precision limit, maximum allowed is 2^50')
 
   if opts and opts.from_array then
     local sum = 0

@@ -5,7 +5,6 @@ local M = {}
 --- Path separator used by the current platform
 local SEP = package.config:sub(1, 1)
 
-
 --- Get a parent directory by depth level
 -- Extracts a subpath located above the specified depth
 -- @param dir (string) Absolute or relative path
